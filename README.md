@@ -17,7 +17,7 @@
 - **Validation**: Celebrate / Joi
 - **Documentation**: Swagger UI & Swagger JSDoc (OpenAPI 3.0.0)
 
-## Швидкий старт
+## Запуск проєкту
 
 1. **Встановлення залежностей**:
    ```bash
@@ -44,7 +44,7 @@
 ## Документація API (Swagger UI)
 
 Інтерактивна документація Swagger доступна у браузері після запуску сервера за адресою:
-👉 **[http://localhost:3000/api-docs](http://localhost:3000/api-docs)**
+**[http://localhost:3000/api-docs](http://localhost:3000/api-docs)**
 
 Тут можна детально ознайомитися зі схемами запитів/відповідей та протестувати будь-який маршрут у реальному часі.
 
