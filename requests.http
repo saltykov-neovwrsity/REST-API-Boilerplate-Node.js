@@ -1,0 +1,95 @@
+@baseUrl = http://localhost:3000
+
+### 1. GET /announcements без параметрів
+GET {{baseUrl}}/announcements
+Accept: application/json
+
+###
+
+### 2. GET /announcements з параметром search
+GET {{baseUrl}}/announcements?search=велосипед
+Accept: application/json
+
+###
+
+### 3. GET /announcements з параметрами sort та page
+GET {{baseUrl}}/announcements?sort=oldest&page=1
+Accept: application/json
+
+###
+
+### 4. POST /announcements з валідними даними
+# @name createAnnouncement
+POST {{baseUrl}}/announcements
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Продам гірський велосипед Giant",
+  "description": "Гірський велосипед Giant, колеса 29 дюймів, алюмінієва рама, відмінний стан.",
+  "price": 14500,
+  "category": "sale",
+  "contactInfo": "0991234567"
+}
+
+###
+
+### 5. GET /announcements/:id з id який існує
+# (Використовуємо ID щойно створеного оголошення)
+@createdId = {{createAnnouncement.response.body.id}}
+GET {{baseUrl}}/announcements/{{createdId}}
+Accept: application/json
+
+###
+
+### 6. GET /announcements/:id з ID якого не існує в базі даних
+GET {{baseUrl}}/announcements/9999
+Accept: application/json
+
+###
+
+### 7. POST /announcements з невалідними даними (валідація 400)
+POST {{baseUrl}}/announcements
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Вело",
+  "description": "Коротко",
+  "price": -100,
+  "category": "invalid_category",
+  "contactInfo": "12"
+}
+
+###
+
+### 8. PATCH /announcements/:id з частковими даними
+PATCH {{baseUrl}}/announcements/{{createdId}}
+Content-Type: application/json
+Accept: application/json
+
+{
+  "price": 13800,
+  "contactInfo": "0997654321"
+}
+
+###
+
+### 9. PATCH /announcements/:id з ID якого не існує в базі даних
+PATCH {{baseUrl}}/announcements/9999
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Оновлена назва неіснуючого"
+}
+
+###
+
+### 10. DELETE /announcements/:id з існуючим ID
+DELETE {{baseUrl}}/announcements/{{createdId}}
+
+###
+
+### 11. DELETE /announcements/:id з ID якого не існує в базі даних
+DELETE {{baseUrl}}/announcements/9999
